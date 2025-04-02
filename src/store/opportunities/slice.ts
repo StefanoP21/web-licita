@@ -1,46 +1,75 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { Opportunity, TypeEnum } from '@/opportunities/interfaces/opportunity';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface InitialState {
   date: {
-    from: null,
-    to: null,
+    from: string | undefined;
+    to: string | undefined;
+  };
+  filters: {
+    followed?: string | undefined;
+    type?: TypeEnum | undefined;
+    dateInit?: string | undefined;
+    dateEnd?: string | undefined;
+    pageSize: number;
+    page: number;
+  };
+  opportunities: any[];
+}
+
+const initialState: InitialState = {
+  date: {
+    from: undefined,
+    to: undefined,
   },
   filters: {
-    followed: null,
-    type: null,
-    dateInit: null,
-    dateEnd: null,
+    followed: undefined,
+    type: undefined,
+    dateInit: undefined,
+    dateEnd: undefined,
+    pageSize: 10,
     page: 1,
   },
   opportunities: [],
-};
+} satisfies InitialState as InitialState;
 
 export const opportunitiesSlice = createSlice({
   name: 'opportunities',
   initialState,
   reducers: {
-    setOpportunities: (state, action) => {
+    setOpportunities: (state, action: PayloadAction<Opportunity[]>) => {
       state.opportunities = action.payload;
     },
-    setDate: (state, action) => {
+    setDate: (state, action: PayloadAction<{ from: string; to: string }>) => {
       state.date = action.payload;
     },
-    setFilters: (state, action) => {
+    setFilters: (
+      state,
+      action: PayloadAction<{
+        followed?: string;
+        type?: TypeEnum;
+        dateInit?: string;
+        dateEnd?: string;
+        pageSize?: number;
+        page?: number;
+      }>
+    ) => {
       state.filters = { ...state.filters, ...action.payload };
     },
-    setPage: (state, action) => {
+    setPage: (state, action: PayloadAction<number>) => {
       state.filters.page = action.payload;
     },
     reset: (state) => {
       state.date = {
-        from: null,
-        to: null,
+        from: undefined,
+        to: undefined,
       };
       state.filters = {
-        followed: null,
-        type: null,
-        dateInit: null,
-        dateEnd: null,
+        followed: undefined,
+        type: undefined,
+        dateInit: undefined,
+        dateEnd: undefined,
+        pageSize: 10,
         page: 1,
       };
       state.opportunities = [];
