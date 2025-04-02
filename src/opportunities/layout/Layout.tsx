@@ -5,7 +5,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>
+      <main className="container mx-auto px-5 py-2.5">
         <SidebarTrigger />
         {children}
       </main>
