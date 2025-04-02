@@ -1,6 +1,6 @@
 import { Home, Rss } from 'lucide-react';
 
-export const items = [
+export const routes = [
   {
     title: 'Oportunidades',
     url: '/',

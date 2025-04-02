@@ -8,7 +8,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { items } from '@/constants';
+import { routes } from '@/constants';
 import { NavLink } from 'react-router';
 
 export function AppSidebar() {
@@ -19,12 +19,12 @@ export function AppSidebar() {
           <SidebarGroupLabel>LicitaLAB</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+              {routes.map((route) => (
+                <SidebarMenuItem key={route.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
+                    <NavLink to={route.url}>
+                      <route.icon />
+                      <span>{route.title}</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
