@@ -106,7 +106,11 @@ export const Followed = () => {
               />
             </div>
             <div className="flex gap-4 items-center">
-              <Button variant={'link'} onClick={() => dispatch(reset())}>
+              <Button
+                variant={'link'}
+                className="cursor-pointer"
+                onClick={() => dispatch(reset())}
+              >
                 Limpiar filtros
               </Button>
             </div>
@@ -115,7 +119,7 @@ export const Followed = () => {
             <div className="flex justify-end">
               <Button
                 size="lg"
-                className="ml-2"
+                className="cursor-pointer"
                 variant="outline"
                 onClick={() => refetch()}
               >

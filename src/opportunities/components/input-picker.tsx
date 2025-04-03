@@ -58,7 +58,7 @@ export function InputPicker(props: InputPickerProps) {
         <Button
           variant={'outline'}
           className={cn(
-            'justify-start text-left font-normal bg-transparent',
+            'justify-start text-left font-normal bg-transparent cursor-pointer',
             !date && 'text-muted-foreground'
           )}
         >

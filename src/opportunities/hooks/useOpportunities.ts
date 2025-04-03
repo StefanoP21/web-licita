@@ -30,7 +30,6 @@ export const useOpportunities = ({
         dateInit,
         dateEnd,
       }),
-    staleTime: 1000 * 60 * 60,
   });
 
   return {
