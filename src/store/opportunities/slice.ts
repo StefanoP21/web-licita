@@ -2,26 +2,18 @@ import { Opportunity, TypeEnum } from '@/opportunities/interfaces/opportunity';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface InitialState {
-  date: {
-    from: string | undefined;
-    to: string | undefined;
-  };
   filters: {
     followed?: string | undefined;
     type?: TypeEnum | undefined;
-    dateInit?: string | undefined;
-    dateEnd?: string | undefined;
+    dateInit?: Date | undefined;
+    dateEnd?: Date | undefined;
     pageSize: number;
     page: number;
   };
-  opportunities: any[];
+  opportunities: Opportunity[];
 }
 
 const initialState: InitialState = {
-  date: {
-    from: undefined,
-    to: undefined,
-  },
   filters: {
     followed: undefined,
     type: undefined,
@@ -40,16 +32,13 @@ export const opportunitiesSlice = createSlice({
     setOpportunities: (state, action: PayloadAction<Opportunity[]>) => {
       state.opportunities = action.payload;
     },
-    setDate: (state, action: PayloadAction<{ from: string; to: string }>) => {
-      state.date = action.payload;
-    },
     setFilters: (
       state,
       action: PayloadAction<{
         followed?: string;
         type?: TypeEnum;
-        dateInit?: string;
-        dateEnd?: string;
+        dateInit?: Date;
+        dateEnd?: Date;
         pageSize?: number;
         page?: number;
       }>
@@ -60,10 +49,6 @@ export const opportunitiesSlice = createSlice({
       state.filters.page = action.payload;
     },
     reset: (state) => {
-      state.date = {
-        from: undefined,
-        to: undefined,
-      };
       state.filters = {
         followed: undefined,
         type: undefined,
@@ -77,5 +62,5 @@ export const opportunitiesSlice = createSlice({
   },
 });
 
-export const { setOpportunities, setDate, setFilters, setPage, reset } =
+export const { setOpportunities, setFilters, setPage, reset } =
   opportunitiesSlice.actions;
