@@ -12,7 +12,6 @@ export const createColumns = ({
   onFollow,
   columnVisibility = {},
 }: Props): ColumnDef<Opportunity>[] => {
-  // Create base columns
   const columns: ColumnDef<Opportunity>[] = [
     {
       accessorKey: 'id',
