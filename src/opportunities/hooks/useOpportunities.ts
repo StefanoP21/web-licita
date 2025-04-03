@@ -13,8 +13,9 @@ export const useOpportunities = ({
     isLoading,
     isError,
     error,
-    data: opportunities = [],
+    data = [],
     isFetching,
+    refetch,
   } = useQuery({
     queryKey: [
       'opportunities',
@@ -36,7 +37,8 @@ export const useOpportunities = ({
     isLoading,
     isError,
     error,
-    opportunities,
+    data,
     isFetching,
+    refetch,
   };
 };

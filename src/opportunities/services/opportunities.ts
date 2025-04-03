@@ -6,8 +6,8 @@ type OpportunitiesResponse = {
   payload: {
     data: {
       data: Opportunity[];
+      totalPages: number;
     };
-    total: number;
   };
 };
 
@@ -23,8 +23,8 @@ export type Params = {
   page: number;
   followed?: string;
   type?: TypeEnum;
-  dateInit?: string;
-  dateEnd?: string;
+  dateInit?: Date;
+  dateEnd?: Date;
 };
 
 export const opportunitiesService = {
@@ -48,12 +48,12 @@ export const opportunitiesService = {
       }
     );
 
-    return data.payload.data.data;
+    return data.payload.data;
   },
   update: async (id: number, opportunity: Partial<Opportunity>) => {
     const { data } = await api.patch<OpportunityResponse>(
       `/opportunities/${id}`,
-      { data: opportunity }
+      opportunity
     );
 
     return data.payload.data;
