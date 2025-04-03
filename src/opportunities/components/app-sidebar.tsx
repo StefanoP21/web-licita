@@ -21,7 +21,10 @@ export function AppSidebar() {
             <SidebarMenu>
               {routes.map((route) => (
                 <SidebarMenuItem key={route.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={location.pathname === route.url}
+                  >
                     <NavLink to={route.url}>
                       <route.icon />
                       <span>{route.title}</span>
