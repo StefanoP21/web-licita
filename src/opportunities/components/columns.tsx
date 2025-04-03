@@ -1,8 +1,15 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Opportunity } from '../interfaces/opportunity';
 import { OpportunityTypes } from '../constants.ts';
+import { Button } from '@/components/ui/button.tsx';
 
-export const columns: ColumnDef<Opportunity>[] = [
+interface Props {
+  onFollow: (opportunityId: number) => Promise<void>;
+}
+
+export const createColumns = ({
+  onFollow,
+}: Props): ColumnDef<Opportunity>[] => [
   {
     accessorKey: 'id',
     header: 'ID',
@@ -46,5 +53,23 @@ export const columns: ColumnDef<Opportunity>[] = [
   {
     accessorKey: 'close_date',
     header: 'Fecha de cierre',
+  },
+  {
+    accessorKey: 'actions',
+    header: 'Acciones',
+    cell: ({ row }) => {
+      const id = Number(row.getValue('id'));
+      const followed = row.getValue('is_followed');
+      return (
+        <Button
+          variant={'outline'}
+          className="cursor-pointer"
+          disabled={!!followed}
+          onClick={() => onFollow(id)}
+        >
+          Seguir
+        </Button>
+      );
+    },
   },
 ];
